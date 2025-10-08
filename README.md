@@ -1,175 +1,205 @@
-🧾 Dynamic Retail Dashboard (Excel Data Science Project)
-📖 Overview
+🧾 Dynamic Retail Dashboard in Excel
+📘 Overview
 
-The Dynamic Retail Dashboard is an interactive Excel-based analytical solution designed to visualize and analyze retail business performance.
-This project demonstrates data science principles applied within Excel, including data ingestion, transformation, and dynamic visualization.
-It provides actionable insights into sales, profit, and shipping performance across multiple regions and markets.
+The Dynamic Retail Dashboard is an interactive and data-driven analytical tool built in Microsoft Excel to visualize and interpret retail business data.
+It connects to datasets hosted on GitHub, utilizes Power Query for data ingestion and transformation, and provides actionable insights through dynamic charts, KPIs, and slicers.
 
-🎯 Objective
+This project helps businesses monitor sales performance, profitability, product trends, and regional insights, enabling smarter decision-making with visual clarity.
 
-The primary goal of this project is to:
+📊 Datasets Used
 
-Analyze retail data efficiently using Excel’s data science tools.
-
-Develop an interactive and automated dashboard to track sales trends, customer segments, and product performance.
-
-Enable data-driven decision-making for business stakeholders through dynamic filters and KPIs.
-
-🧩 Dataset Description
-
-The dataset consists of three related tables — Orders, Returns, and People.
-All datasets are ingested directly from GitHub, ensuring centralized version control and automatic refresh capability.
+The dashboard is based on three key datasets — Orders, Returns, and People — all connected through Power Query for dynamic data refresh.
 
 1️⃣ Orders Table
 
-Contains details about each retail transaction.
+The Orders table contains comprehensive information about customer transactions, including product, shipment, and financial details.
 
-Column Name	Description
-Order ID	Unique identifier for each order
-Order Date / Ship Date	Dates for order placement and shipping
-Ship Mode	Type of delivery (e.g., Same Day, First Class, Second Class)
-Customer ID / Name	Unique customer identifier and name
-Segment	Business category (Consumer, Corporate, Home Office)
-City / State / Country / Postal Code	Customer’s geographical details
-Market / Region	Market classification (e.g., APAC, EU, US)
-Product ID / Category / Sub-Category / Product Name	Product-related details
-Sales	Revenue generated from the sale
-Quantity	Number of units sold
-Discount	Discount percentage applied
-Profit	Net profit from the order
-Shipping Cost	Cost incurred for shipping
-Order Priority	Urgency level (e.g., Critical, Medium)
-Sample Data:
-Order ID	Order Date	Ship Date	Ship Mode	Customer Name	Segment	Country	Product Category	Sales	Profit	Shipping Cost
-CA-2012-124891	31-07-2020	31-07-2020	Same Day	Rick Hansen	Consumer	United States	Technology	2309.65	762.18	933.57
-IN-2013-77878	05-02-2021	07-02-2021	Second Class	Justin Ritter	Corporate	Australia	Furniture	3709.39	-288.76	923.63
-2️⃣ Returns Table (To be added after data sample shared)
+Sample Data
+Order ID	Order Date	Ship Date	Ship Mode	Customer ID	Customer Name	Segment	City	State	Country	Postal Code	Market	Region	Product ID	Category	Sub-Category	Product Name	Sales	Quantity	Discount	Profit	Shipping Cost	Order Priority
+CA-2012-124891	31-07-2020	31-07-2020	Same Day	RH-19495	Rick Hansen	Consumer	New York City	New York	United States	10024	US	East	TEC-AC-10003033	Technology	Accessories	Plantronics CS510 - Over-the-Head monaural Wireless Headset System	2309.65	7	0	762.18	933.57	Critical
+IN-2013-77878	05-02-2021	07-02-2021	Second Class	JR-16210	Justin Ritter	Corporate	Wollongong	New South Wales	Australia		APAC	Oceania	FUR-CH-10003950	Furniture	Chairs	Novimex Executive Leather Armchair, Black	3709.40	9	0.1	-288.77	923.63	Critical
+IN-2013-71249	17-10-2021	18-10-2021	First Class	CR-12730	Craig Reiter	Consumer	Brisbane	Queensland	Australia		APAC	Oceania	TEC-PH-10004664	Technology	Phones	Nokia Smart Phone, with Caller ID	5175.17	9	0.1	919.97	915.49	Medium
+ES-2013-1579342	28-01-2021	30-01-2021	First Class	KM-16375	Katherine Murray	Home Office	Berlin	Berlin	Germany		EU	Central	TEC-PH-10004583	Technology	Phones	Motorola Smart Phone, Cordless	2892.51	5	0.1	-96.54	910.16	Medium
+2️⃣ Returns Table
 
-Contains information on returned orders and reasons for return.
+Tracks orders that have been returned, along with the corresponding market details.
 
-Column Name	Description
-Order ID	ID of the returned order
-Returned	Indicates whether the order was returned (Yes/No)
-Return Reason	Explanation or reason for the return
-3️⃣ People Table (To be added after data sample shared)
+Sample Data
+Returned	Order ID	Market
+Yes	MX-2013-168137	LATAM
+Yes	US-2011-165316	LATAM
+Yes	ES-2013-1525878	EU
+Yes	CA-2013-118311	United States
+3️⃣ People Table
 
-Stores sales representative information by region.
+Contains sales representative details and the regions they manage.
 
-Column Name	Description
-Region	Regional sales zone
-Person	Name of the person handling sales in that region
-🔗 Data Ingestion
+Sample Data
+Person	Region
+Anna Andreadi	Central
+Chuck Magee	South
+Kelly Williams	East
+Matt Collister	West
+Deborah Brumfield	Africa
+🧩 Problem Statements Solved with Steps
+1️⃣ Key Performance Indicators (KPIs)
 
-All data sources are hosted on GitHub.
+Objective: Calculate and display core business metrics like Total Sales, Total Profit, Total Quantity, Number of Orders, and Profit Margin dynamically.
 
-The data is connected to Excel via Power Query, allowing:
+Steps:
 
-Direct online refresh
+Import the Orders dataset via Power Query.
 
-Automatic schema updates when data changes
+Create calculated columns:
 
-Version-controlled data management
+Profit Margin = Profit / Sales
 
-⚙️ Workflow
+Total Orders = COUNT(Order ID)
 
-Data Ingestion
+Use Excel formulas to calculate key metrics:
 
-Load all three tables (Orders, Returns, People) using Excel’s Get Data → From Web feature linked to GitHub.
+Total Sales = SUM(Sales)
 
-Data Cleaning & Transformation
+Total Profit = SUM(Profit)
 
-Standardize column names and formats (e.g., dates, numeric fields).
+Total Quantity = SUM(Quantity)
 
-Merge datasets using common keys (Order ID and Region).
+Build a KPI table using cell references and conditional formatting icons to highlight trends.
 
-Handle missing values and filter invalid records.
+2️⃣ Sales and Profit Trend Analysis
 
-Data Modeling
+Objective: Identify sales and profit performance patterns over time.
 
-Define relationships among the three tables.
+Steps:
 
-Create calculated columns (e.g., profit margin, sales per order).
+Create a Pivot Table with Order Date grouped by Year and Month.
 
-Dashboard Creation
+Add Sales and Profit as values.
 
-Build PivotTables and PivotCharts.
+Insert a Line Chart to visualize trends.
 
-Add dynamic slicers for filters such as Region, Category, Segment, and Ship Mode.
+Apply Slicers for filtering by Category, Region, and Market.
 
-Include KPIs like:
+3️⃣ Category-Wise Profit Analysis
 
-Total Sales
+Objective: Compare profit contributions from different product categories.
 
-Total Profit
+Steps:
 
-Average Shipping Cost
+Create a Pivot Table with Category as rows and Profit as values.
 
-Return Rate
+Sort results in descending order.
 
-Visualization
+Insert a Bar Chart to visualize performance.
 
-Region-wise and Category-wise performance charts.
+Add slicers for Market and Year filters.
 
-Trend analysis over time.
+4️⃣ Segment-Wise Sales Share (%)
 
-Top products and customers by revenue and profit.
+Objective: Display the percentage share of sales from each customer segment.
 
-📊 Dashboard Features
+Steps:
 
-Dynamic Filters: Interactive slicers for market, region, and product category.
+Create a Pivot Table with Segment as rows and Sales as values.
 
-Automated Refresh: Updates automatically from GitHub data source.
+Show values as % of Grand Total.
 
-Performance Metrics: KPIs for profit, sales, and shipping cost.
+Insert a Pie Chart or Donut Chart for visual representation.
 
-Visual Insights:
+Add data labels showing percentages.
 
-Profitability by segment
+5️⃣ Sales by Country
 
-Return rates
+Objective: Analyze and compare sales performance across countries.
 
-Shipping performance
+Steps:
 
-Product category analysis
+Create a Pivot Table with Country as rows and Sales as values.
 
-🧠 Key Insights (Example)
+Sort data by descending order of Sales.
 
-The Technology category yields the highest sales across most regions.
+Use Conditional Formatting or Color Scales to highlight top countries.
 
-Critical order priorities often incur higher shipping costs.
+Optionally, use a Map Chart for regional representation.
 
-Corporate segment customers show greater bulk order volume but lower profit margins due to discounts.
+6️⃣ Top 5 Subcategories
 
-Same Day shipping mode results in higher profit ratios despite increased shipping costs.
+Objective: Identify the top-performing subcategories in terms of sales.
+
+Steps:
+
+Create a Pivot Table using Sub-Category as rows and Sales as values.
+
+Sort by Sales (Descending).
+
+Apply a Top 5 Filter.
+
+Visualize with a Column Chart.
+
+⚙️ Dynamic Features
+
+Power Query Integration: Automatically fetches and refreshes data from GitHub.
+
+Interactive Slicers: Allow users to filter by Region, Market, Category, or Segment.
+
+Dynamic Charts: Update in real-time as filters change.
+
+KPI Indicators: Provide quick performance summaries for decision-makers.
+
+Automated Calculations: Ensures consistency and reduces manual intervention.
+
+🚀 Next Steps / Future Enhancements
+
+Return Rate Analysis: Evaluate product returns by category or market.
+
+Customer Profitability Study: Identify top and bottom customers.
+
+Market Comparison Dashboard: Compare KPIs across regions.
+
+Product-Level Deep Dive: Visualize sales and profit for individual products.
+
+Integration with Power BI: For advanced analytics and storytelling dashboards.
+
+📈 Business Significance
+
+The Dynamic Retail Dashboard enables business teams to:
+
+Track real-time performance across regions and segments.
+
+Understand sales trends and profitability drivers.
+
+Identify high-value markets and low-performing areas.
+
+Make data-backed decisions for marketing, logistics, and inventory planning.
 
 🧰 Tools & Technologies Used
 Tool	Purpose
-Microsoft Excel	Data analysis, Power Query, Dashboard creation
-GitHub	Data source hosting and version control
-Power Query	Data ingestion and transformation
-Pivot Tables & Charts	Data summarization and visualization
-Slicers & KPIs	Interactive analysis
-🚀 How to Use
+Microsoft Excel	Dashboard design, data analysis, KPIs, and visualization
+Power Query	Data ingestion and transformation from GitHub
+GitHub	Centralized data storage and version control
+Pivot Tables & Charts	Summarization and visual analysis
+Slicers & Conditional Formatting	Interactive exploration and highlighting trends
+🧭 Project Workflow
+graph TD
+A[GitHub Dataset] --> B[Power Query in Excel]
+B --> C[Data Cleaning & Transformation]
+C --> D[Data Modeling & Relationship Building]
+D --> E[Pivot Tables & KPIs]
+E --> F[Interactive Dashboard & Insights]
 
-Clone or download this repository from GitHub.
+🖼️ Visuals
 
-Open the Excel workbook.
+This repository includes:
 
-Go to Data → Refresh All to load the latest data from GitHub.
+Screenshots of the final dashboard.
 
-Use the slicers and filters to explore sales insights dynamically.
+KPI visualization examples.
 
-🔮 Future Enhancements
+Chart views for category-wise profit, regional sales, and top subcategories.
 
-Integration with Power BI for advanced visualization.
-
-Predictive analytics (e.g., sales forecasting using regression).
-
-Automated email reports and alerts.
-
-Add more performance metrics like profit per region or shipping efficiency.
+Power Query transformation snapshots.
 
 🏁 Conclusion
 
-The Dynamic Retail Dashboard demonstrates how Excel can be leveraged beyond traditional spreadsheets — acting as a powerful data analytics and visualization tool.
-Through structured data ingestion, transformation, and modeling, this dashboard empowers business users to gain quick, actionable insights with minimal effort.
+The Dynamic Retail Dashboard showcases the powerful combination of Excel + Power Query for real-world data analytics.
+It demonstrates how even without coding, one can build automated, scalable, and insightful dashboards that empower retail businesses to make informed decisions and optimize performance.
